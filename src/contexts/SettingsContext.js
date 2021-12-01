@@ -16,6 +16,7 @@ export function SettingsProvider({children}) {
   /**USE EFFECTS */
   useEffect(() => {
     getName();
+    getCategories();
   }, []);
 
   /**GETTERS */
@@ -31,7 +32,19 @@ export function SettingsProvider({children}) {
       setName('');
     }
   };
+
   // Get categories from local storage
+  const getCategories = async () => {
+    try {
+      const data = await AsyncStorage.getItem('categories');
+      if (data) {
+        setCategories(JSON.parse(data));
+      }
+    } catch (error) {
+      console.log(error);
+      setName('');
+    }
+  };
   // Get payment modes from local storage
 
   /**SETTERS */
@@ -44,12 +57,22 @@ export function SettingsProvider({children}) {
       console.log(error);
     }
   };
+
   // Update categories list
+  const updateCategories = async _categories => {
+    try {
+      await AsyncStorage.setItem('categories', JSON.stringify(_categories));
+      setCategories(_categories);
+      setToast('Changes Saved!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // Update payment modes list
 
   return (
     <SettingsContext.Provider
-      value={{name, setName, categories, paymentModes, updateName}}>
+      value={{name, categories, paymentModes, updateName, updateCategories}}>
       {children}
     </SettingsContext.Provider>
   );
