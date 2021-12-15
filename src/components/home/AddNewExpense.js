@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
-import {StyleSheet, Modal, Text, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Modal,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {Button, Chip, Divider, Subheading, TextInput} from 'react-native-paper';
+import icons from '../../../assets/icons';
 import {useData} from '../../contexts/DataContext';
 import {useMsg} from '../../contexts/MsgContext';
 import {useSettings} from '../../contexts/SettingsContext';
@@ -84,9 +92,12 @@ export default function AddNewExpense() {
 
   return (
     <View>
-      <Button mode="contained" onPress={openModal}>
-        Icon
-      </Button>
+      <TouchableOpacity onPress={openModal}>
+        <Image
+          source={icons.plus}
+          style={{width: 20, height: 20, tintColor: globalColors.Primary}}
+        />
+      </TouchableOpacity>
       <Modal visible={isModalOpen} onDismiss={closeModal} animationType="slide">
         <View
           style={{

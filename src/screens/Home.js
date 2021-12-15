@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import AddNewExpense from '../components/home/AddNewExpense';
+import Header from '../components/home/Header';
 import {globalStyles} from '../styles';
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
         ...globalStyles.component,
       }}>
       {/* Header */}
-      <AddNewExpense />
+      <Header />
       {/* Total Expense */}
       {/* Pie Chart */}
     </View>

@@ -9,7 +9,7 @@ export const useSettings = () => useContext(SettingsContext);
 export function SettingsProvider({children}) {
   const {setToast} = useMsg();
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState('User');
   const [categories, setCategories] = useState([]);
   const [paymentModes, setPaymentModes] = useState([]);
 
@@ -66,6 +66,7 @@ export function SettingsProvider({children}) {
     try {
       await AsyncStorage.setItem('name', _name);
       setToast('Changes Saved!');
+      setName(_name);
     } catch (error) {
       console.log(error);
     }
