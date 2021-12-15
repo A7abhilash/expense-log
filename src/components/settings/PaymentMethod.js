@@ -12,20 +12,20 @@ import {useMsg} from '../../contexts/MsgContext';
 import {useSettings} from '../../contexts/SettingsContext';
 import {globalColors} from '../../styles';
 
-export default function Categories() {
+export default function PaymentMethod() {
   const {setAlert} = useMsg();
-  const {categories, updateCategories} = useSettings();
-  const [category, setCategory] = useState('');
+  const {paymentModes, updatePaymentModes} = useSettings();
+  const [payment_mode, setPayment_Mode] = useState('');
 
   const handleSave = () => {
-    if (category) {
-      if (!categories.includes(category)) {
-        updateCategories([category, ...categories]);
-        setCategory('');
+    if (payment_mode) {
+      if (!paymentModes.includes(payment_mode)) {
+        updatePaymentModes([payment_mode, ...paymentModes]);
+        setPayment_Mode('');
       } else {
         setAlert({
           title: null,
-          msg: 'Category already exists!',
+          msg: 'Payment Mode already exists!',
           text: 'Understood',
         });
       }
@@ -33,11 +33,11 @@ export default function Categories() {
   };
 
   const handleDelete = _item => {
-    Alert.alert('CONFIRM', 'Are you sure to delete this category?', [
+    Alert.alert('CONFIRM', 'Are you sure to delete this payment mode?', [
       {
         text: 'Yes',
         onPress: () => {
-          updateCategories(categories.filter(item => item !== _item));
+          updatePaymentModes(paymentModes.filter(item => item !== _item));
         },
       },
       {
@@ -50,10 +50,10 @@ export default function Categories() {
     <View>
       <TextInput
         mode="outlined"
-        label="Category"
-        placeholder="Category"
-        value={category}
-        onChangeText={setCategory}
+        label="Payment Mode"
+        placeholder="Payment Mode"
+        value={payment_mode}
+        onChangeText={setPayment_Mode}
         style={styles.input}
       />
       <Button
@@ -65,7 +65,7 @@ export default function Categories() {
       </Button>
       <View style={{maxHeight: 150, marginTop: 10}}>
         <ScrollView contentContainerStyle={styles.list}>
-          {categories.map((item, index) => (
+          {paymentModes.map((item, index) => (
             <TouchableOpacity
               key={item + index}
               style={styles.listItem}

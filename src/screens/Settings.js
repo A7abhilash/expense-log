@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Categories from '../components/settings/Categories';
 import Name from '../components/settings/Name';
+import PaymentMethod from '../components/settings/PaymentMethod';
 import {globalColors, globalStyles} from '../styles';
 
 export default function Settings() {
@@ -23,6 +24,9 @@ export default function Settings() {
           <Categories />
         </View>
         {/* Payment modes */}
+        <View style={styles.container}>
+          <PaymentMethod />
+        </View>
       </ScrollView>
     </View>
   );

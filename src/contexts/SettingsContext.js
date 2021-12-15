@@ -17,6 +17,7 @@ export function SettingsProvider({children}) {
   useEffect(() => {
     getName();
     getCategories();
+    getPaymentModes();
   }, []);
 
   /**GETTERS */
@@ -45,7 +46,19 @@ export function SettingsProvider({children}) {
       setName('');
     }
   };
+
   // Get payment modes from local storage
+  const getPaymentModes = async () => {
+    try {
+      const data = await AsyncStorage.getItem('payment_modes');
+      if (data) {
+        setPaymentModes(JSON.parse(data));
+      }
+    } catch (error) {
+      console.log(error);
+      setName('');
+    }
+  };
 
   /**SETTERS */
   // Set name
@@ -68,11 +81,31 @@ export function SettingsProvider({children}) {
       console.log(error);
     }
   };
+
   // Update payment modes list
+  const updatePaymentModes = async _paymentModes => {
+    try {
+      await AsyncStorage.setItem(
+        'payment_modes',
+        JSON.stringify(_paymentModes),
+      );
+      setPaymentModes(_paymentModes);
+      setToast('Changes Saved!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <SettingsContext.Provider
-      value={{name, categories, paymentModes, updateName, updateCategories}}>
+      value={{
+        name,
+        categories,
+        paymentModes,
+        updateName,
+        updateCategories,
+        updatePaymentModes,
+      }}>
       {children}
     </SettingsContext.Provider>
   );
