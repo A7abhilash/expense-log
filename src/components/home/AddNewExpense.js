@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Modal, Text, View, ScrollView} from 'react-native';
 import {Button, Chip, Divider, Subheading, TextInput} from 'react-native-paper';
+import {useData} from '../../contexts/DataContext';
 import {useMsg} from '../../contexts/MsgContext';
 import {useSettings} from '../../contexts/SettingsContext';
 import {globalColors, globalStyles} from '../../styles';
@@ -41,6 +42,7 @@ const Selector = ({name, items, selectedItem, setSelectedItem}) => (
 export default function AddNewExpense() {
   const {setAlert} = useMsg();
   const {categories, paymentModes} = useSettings();
+  const {addNewExpense} = useData();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -56,19 +58,21 @@ export default function AddNewExpense() {
     if (title && expense && selectedCategory && selectedPaymentMode) {
       const item = {
         title,
-        expense,
-        categories: selectedCategory,
-        paymentModes: selectedPaymentMode,
+        expense: parseInt(expense, 10),
+        category: selectedCategory,
+        paymentMode: selectedPaymentMode,
         date: new Date().getTime().toString(),
       };
-      console.log(item);
+      // console.log(item);
 
-      // addExpense(item)
+      addNewExpense(item);
 
       setTitle('');
       setExpense('');
       setSelectedCategory('');
       setSelectedPaymentMode('');
+
+      closeModal();
     } else {
       setAlert({
         title: null,

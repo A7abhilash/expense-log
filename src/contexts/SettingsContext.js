@@ -43,7 +43,7 @@ export function SettingsProvider({children}) {
       }
     } catch (error) {
       console.log(error);
-      setName('');
+      setCategories([]);
     }
   };
 
@@ -56,7 +56,7 @@ export function SettingsProvider({children}) {
       }
     } catch (error) {
       console.log(error);
-      setName('');
+      setPaymentModes([]);
     }
   };
 

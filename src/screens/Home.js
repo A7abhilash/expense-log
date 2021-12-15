@@ -9,9 +9,9 @@ export default function Home() {
       style={{
         ...globalStyles.component,
       }}>
-      {/* Total Expense */}
-      {/* Add new Expense */}
+      {/* Header */}
       <AddNewExpense />
+      {/* Total Expense */}
       {/* Pie Chart */}
     </View>
   );

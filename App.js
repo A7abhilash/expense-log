@@ -1,5 +1,6 @@
 import React from 'react';
 import AppNavigator from './src/AppNavigator';
+import {DataProvider} from './src/contexts/DataContext';
 import {MsgProvider} from './src/contexts/MsgContext';
 import {SettingsProvider} from './src/contexts/SettingsContext';
 
@@ -7,7 +8,9 @@ const App = () => {
   return (
     <MsgProvider>
       <SettingsProvider>
-        <AppNavigator />
+        <DataProvider>
+          <AppNavigator />
+        </DataProvider>
       </SettingsProvider>
     </MsgProvider>
   );
