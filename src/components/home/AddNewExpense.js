@@ -13,39 +13,7 @@ import {useData} from '../../contexts/DataContext';
 import {useMsg} from '../../contexts/MsgContext';
 import {useSettings} from '../../contexts/SettingsContext';
 import {globalColors, globalStyles} from '../../styles';
-
-const Selector = ({name, items, selectedItem, setSelectedItem}) => (
-  <View
-    style={{
-      marginVertical: 10,
-    }}>
-    <Subheading>{name}</Subheading>
-    <View
-      style={{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-      }}>
-      {items.map((item, index) => (
-        <Chip
-          key={item + index}
-          style={{
-            margin: 3,
-            backgroundColor: selectedItem.includes(item)
-              ? globalColors.Warning
-              : globalColors.Silver,
-          }}
-          mode={selectedItem.includes(item) ? 'flat' : 'outlined'}
-          onPress={
-            selectedItem.includes(item)
-              ? () => setSelectedItem('')
-              : () => setSelectedItem(item)
-          }>
-          {item}
-        </Chip>
-      ))}
-    </View>
-  </View>
-);
+import Selector from '../Selector';
 
 export default function AddNewExpense() {
   const {setAlert} = useMsg();
@@ -126,15 +94,31 @@ export default function AddNewExpense() {
             <Selector
               name="Category"
               items={categories}
-              selectedItem={selectedCategory}
-              setSelectedItem={setSelectedCategory}
+              // selectedItem={selectedCategory}
+              isSelected={item => item === selectedCategory}
+              // setSelectedItem={setSelectedCategory}
+              handlePress={item => {
+                if (selectedCategory === item) {
+                  setSelectedCategory('');
+                } else {
+                  setSelectedCategory(item);
+                }
+              }}
             />
             <Divider style={{backgroundColor: globalColors.Secondary}} />
             <Selector
               name="Payment Mode"
               items={paymentModes}
-              selectedItem={selectedPaymentMode}
-              setSelectedItem={setSelectedPaymentMode}
+              // selectedItem={selectedPaymentMode}
+              isSelected={item => item === selectedPaymentMode}
+              // setSelectedItem={setSelectedPaymentMode}
+              handlePress={item => {
+                if (selectedPaymentMode === item) {
+                  setSelectedPaymentMode('');
+                } else {
+                  setSelectedPaymentMode(item);
+                }
+              }}
             />
 
             <View style={{marginVertical: 10}}>
