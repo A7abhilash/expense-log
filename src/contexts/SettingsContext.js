@@ -66,7 +66,11 @@ export function SettingsProvider({children}) {
     try {
       await AsyncStorage.setItem('name', _name);
       setToast('Changes Saved!');
-      setName(_name);
+      if (_name) {
+        setName(_name);
+      } else {
+        setName('User');
+      }
     } catch (error) {
       console.log(error);
     }

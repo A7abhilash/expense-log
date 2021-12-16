@@ -20,7 +20,7 @@ export default function Header() {
         />
         <View>
           <Text>Welcome,</Text>
-          <Text>{name}</Text>
+          <Text style={{fontWeight: '700'}}>{name}</Text>
         </View>
       </View>
       <View>

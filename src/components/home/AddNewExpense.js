@@ -69,7 +69,7 @@ export default function AddNewExpense() {
         expense: parseInt(expense, 10),
         category: selectedCategory,
         paymentMode: selectedPaymentMode,
-        date: new Date().getTime().toString(),
+        date: new Date().getTime(),
       };
       // console.log(item);
 
@@ -141,7 +141,10 @@ export default function AddNewExpense() {
               <Button mode="contained" onPress={handleSubmit}>
                 Add New Expense
               </Button>
-              <Button color={globalColors.Danger} onPress={closeModal}>
+              <Button
+                color={globalColors.Danger}
+                style={{marginTop: 10}}
+                onPress={closeModal}>
                 Cancel
               </Button>
             </View>
