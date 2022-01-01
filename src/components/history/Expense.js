@@ -1,12 +1,42 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, Alert} from 'react-native';
 import {Caption, List, Subheading} from 'react-native-paper';
+import icons from '../../../assets/icons';
+import {useData} from '../../contexts/DataContext';
+import AddNewExpense from '../home/AddNewExpense';
+import EditExpense from './EditExpense';
 
 export default function Expense({expense}) {
+  const {deleteExpense} = useData();
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handlePress = () => {
+    Alert.alert('Select Option', null, [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Delete',
+        onPress: () => {
+          Alert.alert('Confirm', 'Are you sure to delete this expense?', [
+            {text: 'Cancel'},
+            {text: 'Yes', onPress: () => deleteExpense(expense.date)},
+          ]);
+        },
+      },
+      {
+        text: 'Edit',
+        onPress: () => setIsEditing(true),
+      },
+    ]);
+  };
+
   return (
     <>
       <List.Item
         style={styles.container}
+        onPress={handlePress}
         title={expense.title}
         titleStyle={{
           fontSize: 17,
@@ -25,6 +55,13 @@ export default function Expense({expense}) {
           </View>
         )}
       />
+      {isEditing && (
+        <EditExpense
+          _expense={expense}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        />
+      )}
     </>
   );
 }

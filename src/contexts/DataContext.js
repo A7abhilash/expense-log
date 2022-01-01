@@ -31,7 +31,7 @@ export function DataProvider({children}) {
       if (data) {
         const _data = JSON.parse(data);
         setList(_data);
-        console.log(_data);
+        // console.log(_data);
       }
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ export function DataProvider({children}) {
     }
     let total = 0;
     total = _list.reduce((a, b) => a + b.expense, 0);
-    console.log('Total expense= ', total);
+    // console.log('Total expense= ', total);
     return total;
   };
 
@@ -65,6 +65,7 @@ export function DataProvider({children}) {
 
   // Update categories list
   const updateExpenseList = async (_item, id) => {
+    // console.log({_item, id});
     try {
       const _list = [];
 
@@ -83,6 +84,27 @@ export function DataProvider({children}) {
       console.log(error);
     }
   };
+
+  // // Edit an expense
+  // const editExpense = async _item => {
+  //   try {
+  //     const _list = [];
+
+  //     list.forEach(item => {
+  //       if (item.date === _item.date) {
+  //         _list.push(_item);
+  //       } else {
+  //         _list.push(item);
+  //       }
+  //     });
+
+  //     await AsyncStorage.setItem('expense-list', JSON.stringify(_list));
+  //     setList(_list);
+  //     setToast('Expense Edited!');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // Delete an expense
   const deleteExpense = async _id => {
@@ -104,6 +126,7 @@ export function DataProvider({children}) {
         list,
         addNewExpense,
         updateExpenseList,
+        // editExpense,
         deleteExpense,
       }}>
       {children}

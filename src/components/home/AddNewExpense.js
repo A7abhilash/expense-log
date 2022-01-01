@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {Button, Chip, Divider, Subheading, TextInput} from 'react-native-paper';
+import {Button, Divider, TextInput} from 'react-native-paper';
 import icons from '../../../assets/icons';
 import {useData} from '../../contexts/DataContext';
 import {useMsg} from '../../contexts/MsgContext';
