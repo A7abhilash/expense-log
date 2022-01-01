@@ -14,7 +14,7 @@ import {useSettings} from '../contexts/SettingsContext';
 import {globalColors, globalStyles} from '../styles';
 import Selector from './Selector';
 
-export default function FilterOptions() {
+export default function FilterOptions({setFilters}) {
   const {setAlert} = useMsg();
   const {categories, paymentModes} = useSettings();
 
@@ -27,8 +27,13 @@ export default function FilterOptions() {
   const [selectedPaymentModes, setSelectedPaymentModes] = useState([]);
 
   const handleApplyFilters = () => {
-    console.log('Selected categories: ', selectedCategories);
-    console.log('Selected payment modes: ', selectedPaymentModes);
+    // console.log('Selected categories: ', selectedCategories);
+    // console.log('Selected payment modes: ', selectedPaymentModes);
+
+    setFilters({
+      categories: selectedCategories,
+      paymentModes: selectedPaymentModes,
+    });
 
     closeModal();
   };
