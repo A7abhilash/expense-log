@@ -20,6 +20,8 @@ export function DataProvider({children}) {
   useEffect(() => {
     if (list.length) {
       setTotalExpense(getTotalExpense(list));
+    } else {
+      setTotalExpense(0);
     }
   }, [list]);
 
@@ -85,27 +87,6 @@ export function DataProvider({children}) {
     }
   };
 
-  // // Edit an expense
-  // const editExpense = async _item => {
-  //   try {
-  //     const _list = [];
-
-  //     list.forEach(item => {
-  //       if (item.date === _item.date) {
-  //         _list.push(_item);
-  //       } else {
-  //         _list.push(item);
-  //       }
-  //     });
-
-  //     await AsyncStorage.setItem('expense-list', JSON.stringify(_list));
-  //     setList(_list);
-  //     setToast('Expense Edited!');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   // Delete an expense
   const deleteExpense = async _id => {
     try {
@@ -113,6 +94,17 @@ export function DataProvider({children}) {
       await AsyncStorage.setItem('expense-list', JSON.stringify(_list));
       setList(_list);
       setToast('Expense Deleted!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Clear history
+  const clearHistory = async _item => {
+    try {
+      await AsyncStorage.setItem('expense-list', JSON.stringify([]));
+      setList([]);
+      setToast('History cleared!');
     } catch (error) {
       console.log(error);
     }
@@ -126,8 +118,8 @@ export function DataProvider({children}) {
         list,
         addNewExpense,
         updateExpenseList,
-        // editExpense,
         deleteExpense,
+        clearHistory,
       }}>
       {children}
     </DataContext.Provider>

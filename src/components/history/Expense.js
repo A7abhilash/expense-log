@@ -12,7 +12,7 @@ export default function Expense({expense}) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handlePress = () => {
-    Alert.alert('Select Option', null, [
+    Alert.alert('Select Option', `${expense.title}\n₹${expense.expense}`, [
       {
         text: 'Cancel',
       },

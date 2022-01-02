@@ -39,7 +39,7 @@ export default function FilterOptions({setFilters}) {
   };
 
   return (
-    <View>
+    <View style={{marginRight: 15}}>
       <TouchableOpacity onPress={openModal}>
         <Image
           source={icons.filter}

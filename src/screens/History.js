@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Caption, Divider, Subheading} from 'react-native-paper';
 import FilterOptions from '../components/FilterOptions';
 import ListExpense from '../components/history/ListExpense';
+import AddNewExpense from '../components/home/AddNewExpense';
 import {useData} from '../contexts/DataContext';
 import {globalColors, globalStyles} from '../styles';
 
@@ -34,7 +35,10 @@ export default function History() {
       }}>
       <View style={styles.row}>
         <Subheading>History</Subheading>
-        <FilterOptions setFilters={setFilters} />
+        <View style={styles.row}>
+          <FilterOptions setFilters={setFilters} />
+          <AddNewExpense />
+        </View>
       </View>
       {(filters.categories.length !== 0 ||
         filters.paymentModes.length !== 0) && (

@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Categories from '../components/settings/Categories';
+import ClearHistory from '../components/settings/ClearHistory';
 import Name from '../components/settings/Name';
 import PaymentMethod from '../components/settings/PaymentMethod';
 import {globalColors, globalStyles} from '../styles';
@@ -27,6 +28,9 @@ export default function Settings() {
         <View style={styles.container}>
           <PaymentMethod />
         </View>
+
+        {/* Clear History */}
+        <ClearHistory />
       </ScrollView>
     </View>
   );
