@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import ExpensePieChart from '../components/home/ExpensePieChart';
 import Header from '../components/home/Header';
 import TotalExpense from '../components/home/TotalExpense';
 import {globalStyles} from '../styles';
@@ -9,12 +10,16 @@ export default function Home() {
     <View
       style={{
         ...globalStyles.component,
+        paddingBottom: 40,
       }}>
-      {/* Header */}
-      <Header />
-      {/* Total Expense */}
-      <TotalExpense />
-      {/* Pie Chart */}
+      <ScrollView>
+        {/* Header */}
+        <Header />
+        {/* Total Expense */}
+        <TotalExpense />
+        {/* Pie Chart */}
+        <ExpensePieChart />
+      </ScrollView>
     </View>
   );
 }

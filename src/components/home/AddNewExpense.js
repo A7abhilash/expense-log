@@ -43,10 +43,7 @@ export default function AddNewExpense() {
 
       addNewExpense(item);
 
-      setTitle('');
-      setExpense('');
-      setSelectedCategory('');
-      setSelectedPaymentMode('');
+      clearFields();
 
       closeModal();
     } else {
@@ -56,6 +53,13 @@ export default function AddNewExpense() {
         text: 'Understood',
       });
     }
+  };
+
+  const clearFields = () => {
+    setTitle('');
+    setExpense('');
+    setSelectedCategory('');
+    setSelectedPaymentMode('');
   };
 
   return (
@@ -128,7 +132,10 @@ export default function AddNewExpense() {
               <Button
                 color={globalColors.Danger}
                 style={{marginTop: 10}}
-                onPress={closeModal}>
+                onPress={() => {
+                  clearFields();
+                  closeModal();
+                }}>
                 Cancel
               </Button>
             </View>
