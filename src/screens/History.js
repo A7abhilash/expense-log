@@ -34,7 +34,9 @@ export default function History() {
         ...globalStyles.component,
       }}>
       <View style={styles.row}>
-        <Subheading>History</Subheading>
+        <Subheading style={{fontWeight: 'bold', fontSize: 18}}>
+          History
+        </Subheading>
         <View style={styles.row}>
           <FilterOptions setFilters={setFilters} />
           <AddNewExpense />
@@ -67,7 +69,12 @@ export default function History() {
           </View>
         </View>
       )}
-      <View>
+
+      <View
+        style={{
+          marginBottom: 55,
+          flex: 1,
+        }}>
         <ListExpense list={displayList} />
       </View>
     </View>
